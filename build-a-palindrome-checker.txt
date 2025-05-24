@@ -1,0 +1,84 @@
+** start of index.html **
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Palindrome Checker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Palindrome Checker</h1>
+  <input type="text" id="text-input" placeholder="Enter text">
+  <button id="check-btn">Check</button>
+  <p id="result"></p>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+** end of index.html **
+
+** start of styles.css **
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 40px;
+  text-align: center;
+  background-color: #f4f4f4;
+}
+
+h1 {
+  color: #333;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+  width: 300px;
+}
+
+button {
+  padding: 10px 15px;
+  font-size: 16px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+#result {
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+
+** end of styles.css **
+
+** start of script.js **
+
+document.getElementById('check-btn').addEventListener('click', () => {
+  const input = document.getElementById('text-input').value;
+  const result = document.getElementById('result');
+
+  if (!input) {
+    alert("Please input a value");
+    return;
+  }
+
+  const cleaned = input.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+
+  const isPalindromeRecursive = (str) => {
+    if (str.length <= 1) return true;
+    if (str[0] !== str[str.length - 1]) return false;
+    return isPalindromeRecursive(str.slice(1, -1));
+  };
+
+  const isPalindrome = isPalindromeRecursive(cleaned);
+
+  result.textContent = `${input} is ${isPalindrome ? '' : 'not '}a palindrome.`;
+});
+
+
+** end of script.js **
+
